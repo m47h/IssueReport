@@ -10,3 +10,6 @@ services:
 addons:
   postgresql: "9.3"
 os: osx
+group: stable
+dist: precise
+
