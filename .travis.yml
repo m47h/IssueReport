@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.4
 bundler_args: --without production
+script:
+  - rails db:create db:migrate
+  - bundle exec rspec
 services:
   - postgresql
 addons:
