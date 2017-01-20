@@ -1,2 +1,2 @@
-module IssuesHelper
+module IssuesHelper # :nodoc:
 end

@@ -9,8 +9,7 @@ class IssuesController < ApplicationController
 
   # GET /issues/1
   # GET /issues/1.json
-  def show
-  end
+  def show; end
 
   # GET /issues/new
   def new
@@ -18,8 +17,7 @@ class IssuesController < ApplicationController
   end
 
   # GET /issues/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /issues
   # POST /issues.json
@@ -62,13 +60,14 @@ class IssuesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_issue
-      @issue = Issue.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def issue_params
-      params.require(:issue).permit(:name, :body, :status, :priority)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_issue
+    @issue = Issue.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def issue_params
+    params.require(:issue).permit(:name, :body, :status, :priority)
+  end
 end

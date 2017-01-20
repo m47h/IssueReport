@@ -1,0 +1,22 @@
+AllCops:
+  Exclude:
+    - 'vendor/**/*'
+    - 'spec/fixtures/**/*'
+    - 'tmp/**/*'
+    - 'db/**/*'
+    - 'bin/**/*'
+
+Style/Encoding:
+  EnforcedStyle: when_needed
+  Enabled: true
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
+
+Metrics/BlockLength:
+  Exclude:
+    - 'Rakefile'
+    - '**/*.rake'
+    - 'spec/**/*.rb'
+Metrics/LineLength:
+  Max: 90
