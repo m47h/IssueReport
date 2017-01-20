@@ -1,22 +1,33 @@
 AllCops:
   Exclude:
-    - 'vendor/**/*'
-    - 'spec/fixtures/**/*'
-    - 'tmp/**/*'
-    - 'db/**/*'
-    - 'bin/**/*'
+    - bin/*
+    - config/**/*
+    - coverage/**/*
+    - db/**/*
+    - doc/**/*
+    - log/**/*
+    - public/**/*
+    - script/**/*
+    - tmp/**/*
+    - vendor/**/*
 
-Style/Encoding:
-  EnforcedStyle: when_needed
+MethodCalledOnDoEndBlock:
+  Enabled: true
+
+Documentation:
+  Exclude:
+    - app/api/**/*
+    - app/controllers/**/*
+    - app/helpers/**/*
+
+ClassAndModuleChildren:
+  Enabled: false
+
+Style/DotPosition:
+  EnforcedStyle: trailing
+
+Rails:
   Enabled: true
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
-
-Metrics/BlockLength:
-  Exclude:
-    - 'Rakefile'
-    - '**/*.rake'
-    - 'spec/**/*.rb'
-Metrics/LineLength:
-  Max: 90
