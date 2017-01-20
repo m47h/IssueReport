@@ -9,7 +9,7 @@ services:
   - postgresql
 addons:
   postgresql: "9.3"
-os: osx
+os: linux
 group: stable
 dist: precise
 
