@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class IssuesControllerTest < ActionDispatch::IntegrationTest
+class IssuesControllerTest < ActionDispatch::IntegrationTest # :nodoc:
   setup do
     @issue = issues(:one)
   end

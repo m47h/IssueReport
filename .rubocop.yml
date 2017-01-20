@@ -31,3 +31,6 @@ Rails:
 
 Style/FrozenStringLiteralComment:
   EnforcedStyle: never
+
+Metrics/LineLength:
+  Max: 100

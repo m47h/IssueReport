@@ -16,3 +16,9 @@
 = link_to 'Edit', edit_issue_path(@issue)
 \|
 = link_to 'Back', issues_path
+
+%h2= 'Comments'
+#comments
+  = render @issue.comments
+  %p
+    = render 'comments/new'

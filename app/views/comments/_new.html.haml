@@ -1,0 +1,7 @@
+= form_for [@issue, Comment.new], remote: true do |f|
+  .field= 'Your comment'
+  .field
+    = f.label :body
+    = f.text_area :body, size: '50x20'
+  .actions
+    = f.submit 'Save'
