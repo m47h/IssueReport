@@ -1,7 +1,5 @@
-= form_for [@issue, Comment.new], remote: true do |f|
-  .field= 'Your comment'
+= bootstrap_form_for [@issue, Comment.new], remote: true do |f|
   .field
-    = f.label :body
-    = f.text_area :body, size: '50x20'
+    = f.text_area :body
   .actions
-    = f.submit 'Save'
+    = f.button :comment, type: 'submit', class: 'btn btn-primary'
