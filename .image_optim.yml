@@ -1,0 +1,8 @@
+pngout: false
+advpng: false
+optipng: false
+pngquant: false
+jhead: false
+jpegoptim: false
+gifsicle: false
+svgo: false
