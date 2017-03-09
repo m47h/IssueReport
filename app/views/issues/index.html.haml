@@ -5,4 +5,4 @@
     class: 'btn btn-xs btn-default', 'data-toggle'.to_sym => 'modal',
     'data-target'.to_sym => '#issueModal', 'data-remote'.to_sym => 'true'
   - @issues.each do |issue|
-    = render :issue, issue: issue
+    = render 'issue', issue: issue
