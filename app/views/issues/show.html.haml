@@ -5,11 +5,12 @@
         = @issue.name
         = label_status(@issue.status)
         = label_priority(@issue.priority)
-        = link_to 'New Issue', [:new, :issue], type: 'button',
+        = link_to 'New Issue', [:new, :issue], type: 'button', remote: true,
           class: 'btn btn-xs btn-success pull-right'
-        = link_to 'Edit', [:edit, @issue], type: 'button',
+        = link_to 'Edit', [:edit, @issue], type: 'button', remote: true,
           class: 'btn btn-xs btn-warning pull-right'
     .panel-body
+      = image_tag(@issue.image.url, width: 300)
       = @issue.body
 .row{ id: 'issue_#{@issue.id}' }
   %h2= 'Comments'

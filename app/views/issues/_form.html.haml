@@ -17,6 +17,8 @@
           = f.select :status, Issue::STATUS
         .field
           = f.select :priority, Issue::PRIORITY
+        .field
+          = f.file_field :image
       .modal-footer
         %button.btn.btn-default{ 'data-dismiss' => 'modal',
          :type => 'button' } Close

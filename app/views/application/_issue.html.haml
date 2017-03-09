@@ -1,6 +1,6 @@
 .media.col-md-12{ id: "issue_#{issue.id}" }
   .media-left
-    = link_to image_tag('64x64.png',
+    = link_to image_tag(issue.image.url(:thumb),
       class: 'media-obiect', alt: `...`), issue
   .media-body
     %h4.media-heading
