@@ -1,0 +1,15 @@
+.media.col-md-12{ id: "issue_#{issue.id}" }
+  .media-left
+    = link_to image_tag('64x64.png',
+      class: 'media-obiect', alt: `...`), issue
+  .media-body
+    %h4.media-heading
+      = issue.name
+      = label_status(issue.status)
+      = label_priority(issue.priority)
+    = issue.body
+    = link_to 'Edit', edit_issue_path(issue), type: 'button', remote: true,
+      class: 'btn btn-xs btn-default'
+    = link_to 'Destroy', issue, method: :delete,
+      data: { confirm: 'Are you sure?' },
+      type: 'button', class: 'btn btn-xs btn-default'

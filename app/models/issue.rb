@@ -5,4 +5,5 @@ class Issue < ApplicationRecord # :nodoc:
   has_many :comments
 
   validates :name, :body, presence: true
+  validates :name, uniqueness: true
 end
