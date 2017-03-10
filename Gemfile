@@ -40,19 +40,22 @@ gem 'sprockets-rails'
 gem 'devise'
 gem 'haml-rails', '~> 0.9'
 
+group :test do
+  gem 'capybara'
+  gem 'rspec-rails', '~> 3.5'
+end
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop
   # execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec'
 end
 
 group :development do
   # Access an IRB console on exception pages or by
   # using <%= console %> anywhere in the code.
-  gem 'capybara'
+  gem 'better_errors'
   gem 'listen', '~> 3.0.5'
-  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your
   # application running in the background.
   # Read more: https://github.com/rails/spring
