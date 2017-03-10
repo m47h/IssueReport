@@ -13,6 +13,7 @@
     <% if current_user %>
       <%= render 'layouts/header' %>
     <% end %>
+    <div class='flash'><%= render 'flash' %></div>
     <div class='container'>
       <%= render 'modal' %>
       <%= yield %>

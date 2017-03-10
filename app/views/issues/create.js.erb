@@ -4,3 +4,4 @@ $('#issueModal').modal('hide');
 <% elsif action_name == 'update' %>
   $('#issue_<%= @issue.id %>').replaceWith('<%= escape_javascript(render "issue", issue: @issue) %>');
 <% end %>
+$('.flash').append('<%= escape_javascript(render "flash") %>');

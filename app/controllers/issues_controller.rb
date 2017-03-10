@@ -31,8 +31,9 @@ class IssuesController < ApplicationController
 
     respond_to do |format|
       if @issue.save
+        flash[:success] = 'Issue was successfully created.'
         format.json { render :show, status: :created, location: @issue }
-        format.js   { render :create, notice: 'Issue was successfully created.' }
+        format.js   { render :create }
       else
         format.json { render json: @issue.errors, status: :unprocessable_entity }
         format.js   { render :new }
@@ -45,8 +46,9 @@ class IssuesController < ApplicationController
   def update
     respond_to do |format|
       if @issue.update(issue_params)
+        flash[:success] = 'Issue was successfully updated.'
         format.json { render :show, status: :ok, location: @issue }
-        format.js   { render :create, notice: 'Issue was successfully updated.' }
+        format.js   { render :create }
       else
         format.json { render json: @issue.errors, status: :unprocessable_entity }
         format.js   { render :new }
@@ -58,8 +60,9 @@ class IssuesController < ApplicationController
   # DELETE /issues/1.json
   def destroy
     @issue.destroy
+    flash[:danger] = 'Issue was successfully destroyed.'
     respond_to do |format|
-      format.html { redirect_to issues_url, notice: 'Issue was successfully destroyed.' }
+      format.html { redirect_to issues_url }
       format.json { head :no_content }
     end
   end
