@@ -43,6 +43,7 @@ gem 'haml-rails', '~> 0.9'
 group :test do
   gem 'capybara'
   gem 'rspec-rails', '~> 3.5'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development, :test do
@@ -50,6 +51,7 @@ group :development, :test do
   # execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 group :development do
