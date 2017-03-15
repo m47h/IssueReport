@@ -5,8 +5,8 @@
       :type => 'button' }
         %span{ 'aria-hidden' => 'true' } ×
       %h4.modal-title#IssueModalLabel
-        = action_name
-        Category
+        = action_name.capitalize
+        Issue
     = bootstrap_form_for @issue, remote: true do |f|
       .modal-body
         .field
@@ -22,4 +22,4 @@
       .modal-footer
         %button.btn.btn-default{ 'data-dismiss' => 'modal',
          :type => 'button' } Close
-        = f.button :submit, type: 'submit', class: 'btn btn-primary'
+        = f.button 'Submit', type: 'Submit', class: 'btn btn-primary'
