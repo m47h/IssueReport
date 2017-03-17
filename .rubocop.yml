@@ -10,6 +10,7 @@ AllCops:
     - script/**/*
     - tmp/**/*
     - vendor/**/*
+    - spec/**/*
 
 MethodCalledOnDoEndBlock:
   Enabled: true
