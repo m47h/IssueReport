@@ -29,7 +29,7 @@ RSpec.feature 'Issue', type: :feature do
     expect(page).to have_content 'Name2'
   end
 
-  scenario 'User remote open and fill in  New Issue Form', js: true do
+  scenario '#create : remote CORRECT creating Issue', js: true do
     visit issues_path
 
     click_link 'New Issue'
@@ -44,11 +44,32 @@ RSpec.feature 'Issue', type: :feature do
     expect(page).to have_content user.email
   end
 
-  # scenario 'User remote edit Issue', js: true do
-  #   visit issues_path
-  #
-  #   click_link 'Edit Issue'
-  #   click_link 'Submit'
-  #   expect(page).to have_content faker
-  # end
+  scenario '#create : remote creating Issue with blank NAME', js: true do
+    visit issues_path
+
+    click_link 'New Issue'
+    expect(page).to have_content 'Body'
+    within('form#new_issue') do
+      fill_in 'Name', with: ''
+      click_button 'Submit'
+    end
+    expect(page).to have_content 'blank'
+  end
+
+  scenario '#update : remote CORRECT editing Issue', js: true do
+    visit issues_path
+    within('#issue_' + issue.id.to_s) do
+      click_link 'Edit'
+    end
+    within('.edit_issue') do
+      fill_in 'Name', with: issue2.name
+      click_button 'Submit'
+    end
+    expect(page).to have_content 'has already been taken'
+    within('.edit_issue') do
+      fill_in 'Name', with: 'Correct Name'
+      click_button 'Submit'
+    end
+    expect(page).to have_content 'Correct Name'
+  end
 end
