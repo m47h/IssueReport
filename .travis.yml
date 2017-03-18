@@ -9,7 +9,12 @@ services:
   - postgresql
 addons:
   postgresql: "9.3"
+  apt:
+    sources:
+    - google-chrome
+    packages:
+    - google-chrome-stable
 os: linux
 group: stable
-dist: precise
-
+sudo: required
+dist: trusty
