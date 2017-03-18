@@ -35,6 +35,7 @@ gem 'haml-rails', '~> 0.9'
 
 group :test do
   gem 'capybara'
+  gem 'chromedriver-helper' # Use to work on TravisCI
   gem 'shoulda-matchers', '~> 3.1'
 end
 
