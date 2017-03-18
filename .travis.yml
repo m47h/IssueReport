@@ -1,4 +1,6 @@
 language: ruby
+sudo: required
+dist: trusty
 rvm:
   - 2.4.0
 bundler_args: --without production
@@ -9,12 +11,13 @@ services:
   - postgresql
 addons:
   postgresql: "9.3"
-  apt:
-    sources:
-    - google-chrome
-    packages:
-    - google-chrome-stable
 os: linux
 group: stable
-sudo: required
-dist: trusty
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
+before_script:
+  - "export PATH=$PATH:/usr/lib/chromium-browser/"
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3 # give xvfb some time to start
