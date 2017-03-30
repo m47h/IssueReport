@@ -4,6 +4,7 @@ class CommentsController < ApplicationController # :nodoc:
   def create
     @comment = @issue.comments.build
     @comment.body = params[:comment][:body]
+    @comment.user = current_user
     if @comment.save
       redirect_to @issue
     else

@@ -1,3 +1,5 @@
-%div
-  %span= comment.created_at.to_s(:long)
+.list-group
+  %h5
+    = comment.user.email
+    %span= comment.created_at.to_s(:long)
   = comment.body
