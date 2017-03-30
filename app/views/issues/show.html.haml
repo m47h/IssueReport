@@ -5,6 +5,7 @@
         = @issue.name
         = label_status(@issue.status)
         = label_priority(@issue.priority)
+        = '| ' + @issue.user.email
         = link_to 'New Issue', [:new, :issue], type: 'button', remote: true,
           class: 'btn btn-xs btn-success pull-right'
         = link_to 'Edit', [:edit, @issue], type: 'button', remote: true,

@@ -2,6 +2,7 @@ class Issue < ApplicationRecord # :nodoc:
   STATUS = %w(Open Pending Closed).freeze
   PRIORITY = %w(Low Normal High).freeze
   # rubocop:disable AlignHash
+  belongs_to :user
   has_many :comments
   has_attached_file :image,
                     styles: { thumb: '64x64#' },
