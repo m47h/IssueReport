@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Issue', type: :feature do
   let!(:user) { FactoryGirl.create(:user, password: '12345678') }
-  let!(:issue) { FactoryGirl.create(:issue) }
-  let!(:issue2) { FactoryGirl.create(:issue, name: 'Name2') }
+  let!(:issue) { FactoryGirl.create(:issue, user: user) }
+  let!(:issue2) { FactoryGirl.create(:issue, name: 'Name2', user: user) }
   before(:each) do
     login_as user
   end
