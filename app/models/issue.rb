@@ -1,7 +1,6 @@
 class Issue < ApplicationRecord # :nodoc:
   STATUS = %w(Open Pending Closed).freeze
   PRIORITY = %w(Low Normal High).freeze
-  # rubocop:disable AlignHash
   belongs_to :user
   has_many :comments
   has_attached_file :image,
@@ -14,4 +13,3 @@ class Issue < ApplicationRecord # :nodoc:
                        content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
                        size: { in: 0..1.megabytes }
 end
-# rubocop:enable AlignHash
