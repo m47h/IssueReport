@@ -10,7 +10,7 @@ class Issue < ApplicationRecord # :nodoc:
 
   validates :name, :body, presence: true
   validates :name, uniqueness: true
-  validates_attachment :image, presence: true,
+  validates_attachment :image,
                        content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
                        size: { in: 0..1.megabytes }
 end
