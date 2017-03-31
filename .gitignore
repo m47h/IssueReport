@@ -43,4 +43,4 @@ bower.json
 
 # MacOS files
 .DS_Store
-
+/public/panodata

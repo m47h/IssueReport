@@ -1,2 +1,8 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.container {
+  &::after {
+    padding-bottom: 20px;
+  }
+}
