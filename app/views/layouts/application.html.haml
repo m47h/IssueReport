@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %title IssueReport
+    %meta{ content: 'width=device-width, initial-scale=1, maximum-scale=1,
+           user-scalable=no', name: 'viewport' }/
+    = stylesheet_link_tag    'application', media: 'all',
+                             'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tags
+  %body{ role: 'document' }
+    - if current_user
+      = render 'layouts/header'
+    .container
+      .flash= render 'flash'
+      = render 'modal'
+      = yield
