@@ -17,33 +17,11 @@
           %a{ href: issues_path }
             Issues
             %span.sr-only (current)
-        %li.dropdown
-          %a.dropdown-toggle{ 'aria-expanded' => 'false',
-              'aria-haspopup' => 'true',
-              'data-toggle' => 'dropdown',
-              href: '#', role: 'button' }
-            Dropdown
-            %span.caret
-          %ul.dropdown-menu
-            %li
-              %a{ href: '#' } Action
-            %li
-              %a{ href: '#' } Another action
-            %li
-              %a{ href: '#' } Something else here
-            %li.divider{ role: 'separator' }
-            %li
-              %a{ href: '#' } Separated link
-            %li.divider{ role: 'separator' }
-            %li
-              %a{ href: '#' } One more separated link
       %form.navbar-form.navbar-left
         .form-group
           %input.form-control{ placeholder: 'Search', type: 'text' }
         %button.btn.btn-default{ type: 'submit' } Submit
       %ul.nav.navbar-nav.navbar-right
-        %li
-          %a{ href: '#' } Link
         %li.dropdown
           %a.dropdown-toggle{ 'aria-expanded' => 'false',
               'aria-haspopup' => 'true',
@@ -53,13 +31,6 @@
             = current_user.email
             %span.caret
           %ul.dropdown-menu
-            %li
-              %a{ href: '#' } Action
-            %li
-              %a{ href: '#' } Another action
-            %li
-              %a{ href: '#' } Something else here
-            %li.divider{ role: 'separator' }
             %li
               %a{ href: sign_out_path } Sign out
     / /.navbar-collapse
