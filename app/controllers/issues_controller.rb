@@ -4,7 +4,11 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = Issue.all
+    @issues = if params[:search].blank?
+                Issue.all
+              else
+                Issue.where('"issues"."name" like ?', "%#{params[:search]}%")
+              end
   end
 
   # GET /issues/1

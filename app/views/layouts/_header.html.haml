@@ -17,10 +17,14 @@
           %a{ href: issues_path }
             Issues
             %span.sr-only (current)
-      %form.navbar-form.navbar-left
-        .form-group
-          %input.form-control{ placeholder: 'Search', type: 'text' }
-        %button.btn.btn-default{ type: 'submit' } Submit
+      = bootstrap_form_tag(url: issues_path,
+                           layout: :inline,
+                           html: { role: 'search',
+                                   class: 'navbar-form navbar-left',
+                                   method: :get }) do |f|
+        .field
+          = f.text_field :search, hide_label: true, placeholder: 'Search'
+          = f.button 'Search', class: 'btn btn-default'
       %ul.nav.navbar-nav.navbar-right
         %li.dropdown
           %a.dropdown-toggle{ 'aria-expanded' => 'false',
@@ -35,3 +39,6 @@
               %a{ href: sign_out_path } Sign out
     / /.navbar-collapse
   / /.container-fluid
+
+
+
