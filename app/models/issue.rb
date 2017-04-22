@@ -2,7 +2,7 @@ class Issue < ApplicationRecord # :nodoc:
   STATUS = %w(Open Pending Closed).freeze
   PRIORITY = %w(Low Normal High).freeze
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_attached_file :image,
                     styles: { thumb: '64x64#' },
                     default_url: '/system/:class/:attachment/64x64.png'

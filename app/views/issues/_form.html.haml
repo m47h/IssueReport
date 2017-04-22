@@ -1,8 +1,9 @@
 .modal-dialog{ role: 'document' }
   .modal-content
     .modal-header
-      %button.close{ 'aria-label' => 'Close', 'data-dismiss' => 'modal',
-      :type => 'button' }
+      %button.close{ aria: { label: 'Close' },
+                     data: { dismiss: 'modal' },
+                     type: 'button' }
         %span{ 'aria-hidden' => 'true' } ×
       %h4.modal-title#IssueModalLabel
         = action_name.capitalize
@@ -18,8 +19,21 @@
         .field
           = f.select :priority, Issue::PRIORITY
         .field
-          = f.file_field :image
+          - if @issue.image.file?
+            .form-group
+              %label.control-label
+                Current Image -
+                = link_to 'Change',
+                          '.js-image-input',
+                          id: 'change_image',
+                          class: 'btn btn-xs btn-primary',
+                          remote: true,
+                          data: { toggle: 'collapse',
+                                  target: '.js-image-input' }
+              = image_tag @issue.image.url(:thumb), style: 'display: block;'
+          = f.file_field :image, label: 'New Image',
+            wrapper_class: 'js-image-input collapse' + (@issue.image.file? ? '' : ' in')
       .modal-footer
-        %button.btn.btn-default{ 'data-dismiss' => 'modal',
-         :type => 'button' } Close
-        = f.button 'Submit', type: 'Submit', class: 'btn btn-primary'
+        %button.btn.btn-default{ data: { dismiss: 'modal' },
+                                 type: 'button' } Close
+        = f.primary
