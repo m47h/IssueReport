@@ -11,8 +11,16 @@ services:
   - postgresql
 addons:
   postgresql: "9.3"
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
 os: linux
 group: stable
+before_install:
+  - sudo apt-get update
+  - sudo apt-get --only-upgrade install chromium-chromedriver
 before_script:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
