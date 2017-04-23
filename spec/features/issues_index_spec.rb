@@ -24,21 +24,29 @@ RSpec.feature 'Issue', type: :feature do
   scenario '#index : User logs in and display issues list' do
     visit issues_path
     click_link 'Issues'
-
     expect(page).to have_content issue.name
     expect(page).to have_content 'Name2'
   end
 
+  scenario '#index : Search issue' do
+    visit issues_path
+    within('form.navbar-form') do
+      fill_in 'Search', with: issue.name
+      click_button 'Search'
+    end
+    expect(page).to have_content issue.name
+    expect(page).not_to have_content 'Name2'
+  end
+
   scenario '#create : remote CORRECT creating Issue', js: true do
     visit issues_path
-
     click_link 'New Issue'
     expect(page).to have_content 'Body'
     within('form#new_issue') do
       fill_in 'Name', with: 'myName1'
       fill_in 'Body', with: 'Body my twice'
       page.attach_file('issue_image', Rails.root.join('spec', 'support', '64x64.png'))
-      click_button 'Submit'
+      click_button 'Issue'
     end
     expect(page).to have_content 'myName1'
     expect(page).to have_content user.email
@@ -46,12 +54,11 @@ RSpec.feature 'Issue', type: :feature do
 
   scenario '#create : remote creating Issue with blank NAME', js: true do
     visit issues_path
-
     click_link 'New Issue'
     expect(page).to have_content 'Body'
     within('form#new_issue') do
       fill_in 'Name', with: ''
-      click_button 'Submit'
+      click_button 'Issue'
     end
     expect(page).to have_content 'blank'
   end
@@ -63,12 +70,12 @@ RSpec.feature 'Issue', type: :feature do
     end
     within('.edit_issue') do
       fill_in 'Name', with: issue2.name
-      click_button 'Submit'
+      click_button 'Issue'
     end
     expect(page).to have_content 'has already been taken'
     within('.edit_issue') do
       fill_in 'Name', with: 'Correct Name'
-      click_button 'Submit'
+      click_button 'Issue'
     end
     expect(page).to have_content 'Correct Name'
   end
