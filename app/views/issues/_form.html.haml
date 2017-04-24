@@ -8,7 +8,7 @@
       %h4.modal-title#IssueModalLabel
         = action_name.capitalize
         Issue
-    = bootstrap_form_for @issue, remote: true do |f|
+    = bootstrap_form_for [@project, @issue], remote: true do |f|
       .modal-body
         .field
           = f.text_field :name

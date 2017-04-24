@@ -1,6 +1,6 @@
 $('#Modal').modal('hide');
 <% if action_name == 'create' %>
-  $('#issues').append('<%= escape_javascript(render "issue", issue: @issue) %>');
+  $('#project_<%= @project.id %> > div').append('<%= escape_javascript(render "issue", issue: @issue) %>');
 <% elsif action_name == 'update' %>
   $('#issue_<%= @issue.id %>').replaceWith('<%= escape_javascript(render "issue", issue: @issue) %>');
 <% end %>

@@ -1,4 +1,4 @@
-.media.col-md-12{ id: "issue_#{issue.id}" }
+.media.col-md-12{ id: 'issue_' + issue.id.to_s }
   .media-left
     = link_to image_tag(issue.image.url(:thumb),
       class: 'media-obiect', alt: `...`), issue
@@ -7,9 +7,13 @@
       = issue.name
       = label_status(issue.status)
       = label_priority(issue.priority)
-      = link_to 'Edit', edit_issue_path(issue), type: 'button', remote: true,
-        class: 'btn btn-xs btn-default'
-      = link_to 'Destroy', issue, method: :delete,
-        data: { confirm: 'Are you sure?' },
-        type: 'button', class: 'btn btn-xs btn-default'
+      = link_to 'Edit', [:edit, issue],
+                type: 'button',
+                remote: true,
+                class: 'btn btn-xs btn-default'
+      = link_to 'Destroy', issue,
+                method: :delete,
+                data: { confirm: 'Are you sure?' },
+                type: 'button',
+                class: 'btn btn-xs btn-default'
     = issue.body

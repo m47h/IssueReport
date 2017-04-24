@@ -17,20 +17,15 @@
     / Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse#navbar-collapse-1
       %ul.nav.navbar-nav
-        %li.active
-          %a{ href: projects_path }
-            Projects
-            %span.sr-only (current)
-        %li.active
-          %a{ href: issues_path }
-            Issues
-            %span.sr-only (current)
-      = bootstrap_form_tag(url: issues_path,
+        = navbar_links
+      = bootstrap_form_tag(url: [@project, :issues],
                            layout: :inline,
                            html: { role: 'search',
                                    class: 'navbar-form navbar-left',
                                    method: :get }) do |f|
         .field
+          - unless @project.nil?
+            = f.hidden_field :project_id, value: @project.id
           = f.text_field :search, hide_label: true, placeholder: 'Search'
           = f.button 'Search', class: 'btn btn-default'
       %ul.nav.navbar-nav.navbar-right

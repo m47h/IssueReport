@@ -1,13 +1,14 @@
 class IssuesController < ApplicationController
+  before_action :set_project, only: [:index, :create, :new]
   before_action :set_issue, only: [:show, :edit, :update, :destroy]
 
   # GET /issues
   # GET /issues.json
   def index
     @issues = if params[:search].blank?
-                Issue.all
+                @project.issues.all
               else
-                Issue.where('"issues"."name" like ?', "%#{params[:search]}%")
+                @project.issues.where('"issues"."name" like ?', "%#{params[:search]}%")
               end
   end
 
@@ -31,7 +32,10 @@ class IssuesController < ApplicationController
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(issue_params) { |i| i.user = current_user }
+    @issue = Issue.new(issue_params) do |i|
+      i.user = current_user
+      i.project = @project
+    end
     respond_to do |format|
       if @issue.save
         flash[:success] = 'Issue was successfully created.'
@@ -72,9 +76,14 @@ class IssuesController < ApplicationController
 
   private
 
+  def set_project
+    @project = Project.find(params[:project_id])
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_issue
     @issue = Issue.find(params[:id])
+    @project = @issue.project
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

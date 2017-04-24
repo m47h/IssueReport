@@ -2,6 +2,7 @@ class Issue < ApplicationRecord # :nodoc:
   STATUS = %w(Open Pending Closed).freeze
   PRIORITY = %w(Low Normal High).freeze
   belongs_to :user
+  belongs_to :project
   has_many :comments, dependent: :destroy
   has_attached_file :image,
                     styles: { thumb: '64x64#' },

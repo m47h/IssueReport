@@ -28,4 +28,22 @@ module ApplicationHelper # :nodoc:
       'label-danger'
     end
   end
+
+  def navbar_links
+    active = 'active'
+    if @project.blank?
+      custom_li('Projects', projects_path, active)
+    else
+      custom_li('Projects', projects_path) + custom_li('Issues',
+                                                       [@project, :issues],
+                                                       active)
+    end
+  end
+
+  def custom_li(name, path, active = '')
+    content_tag :li, class: active do
+      link_to(name, path) +
+        content_tag(:span, '(current)', class: 'sr-only')
+    end
+  end
 end

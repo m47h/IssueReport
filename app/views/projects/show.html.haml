@@ -1,7 +1,11 @@
-.row{ id: 'project_#{@project.id}' }
-  %h3
+.row{ id: "project_#{@project.id}" }
+  %h2
+    Project
     = @project.name
-    = link_to 'New Project', [:new, :project], type: 'button', remote: true,
-      class: 'btn btn-xs btn-success pull-right'
-    = link_to 'Edit', [:edit, @project], type: 'button', remote: true,
-      class: 'btn btn-xs btn-warning pull-right'
+    .btn-group
+      = link_to 'Edit', [:edit, @project], type: 'button', remote: true,
+        class: 'btn btn-xs btn-warning'
+      = link_to 'New Project', [:new, :project], type: 'button', remote: true,
+        class: 'btn btn-xs btn-success'
+  .col-md-12
+    = render template: 'issues/index'
