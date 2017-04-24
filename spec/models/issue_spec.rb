@@ -8,5 +8,6 @@ RSpec.describe Issue, type: :model do
     it { is_expected.to belong_to(a) }
   end
   it { is_expected.to have_many(:comments) }
+  it { is_expected.to have_many(:comments).dependent :destroy }
   it { is_expected.to validate_uniqueness_of(:name) }
 end
