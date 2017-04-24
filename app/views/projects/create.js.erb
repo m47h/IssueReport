@@ -1,0 +1,7 @@
+$('#Modal').modal('hide');
+<% if action_name == 'create' %>
+  $('#projects').append('<%= escape_javascript(render "project", project: @project) %>');
+<% elsif action_name == 'update' %>
+  $('#project_<%= @project.id %>').replaceWith('<%= escape_javascript(render "project", project: @project) %>');
+<% end %>
+$('.flash').append('<%= escape_javascript(render "flash") %>');

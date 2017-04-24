@@ -1,0 +1,11 @@
+.row{ id: 'projects' }
+  %h1
+    Listing projects
+    = link_to 'New Project', new_project_path,
+                             type: 'button',
+                             class: 'btn btn-xs btn-default',
+                             data: { toggle: 'modal',
+                                     target: '#projectModal',
+                                     remote: true }
+  - @projects.each do |project|
+    = render 'project', project: project

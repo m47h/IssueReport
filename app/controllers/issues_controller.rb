@@ -31,9 +31,7 @@ class IssuesController < ApplicationController
   # POST /issues
   # POST /issues.json
   def create
-    @issue = Issue.new(issue_params)
-    @issue.user = current_user
-
+    @issue = Issue.new(issue_params) { |i| i.user = current_user }
     respond_to do |format|
       if @issue.save
         flash[:success] = 'Issue was successfully created.'

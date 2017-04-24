@@ -1,0 +1,7 @@
+.row{ id: 'project_#{@project.id}' }
+  %h3
+    = @project.name
+    = link_to 'New Project', [:new, :project], type: 'button', remote: true,
+      class: 'btn btn-xs btn-success pull-right'
+    = link_to 'Edit', [:edit, @project], type: 'button', remote: true,
+      class: 'btn btn-xs btn-warning pull-right'

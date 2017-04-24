@@ -1,8 +1,8 @@
 .row{ id: 'issues' }
   %h1
-    = 'Listing issues'
+    Listing issues
     = link_to 'New Issue', new_issue_path, type: 'button',
     class: 'btn btn-xs btn-default', 'data-toggle'.to_sym => 'modal',
-    'data-target'.to_sym => '#issueModal', 'data-remote'.to_sym => 'true'
+    'data-target'.to_sym => '#Modal', 'data-remote'.to_sym => 'true'
   - @issues.each do |issue|
     = render 'issue', issue: issue

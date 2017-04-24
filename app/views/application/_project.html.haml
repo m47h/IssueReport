@@ -1,0 +1,15 @@
+.media.col-md-12{ id: "project_#{project.id}" }
+  .media-left
+    = link_to image_tag('/system/issues/images/64x64.png',
+                        class: 'media-obiect', alt: `...`), project
+  .media-body
+    %h4.media-heading
+      = project.name
+      = link_to 'Edit',
+                edit_project_path(project),
+                type: 'button',
+                remote: true,
+        class: 'btn btn-xs btn-default'
+      = link_to 'Destroy', project, method: :delete,
+        data: { confirm: 'Are you sure?' },
+        type: 'button', class: 'btn btn-xs btn-default'

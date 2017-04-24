@@ -10,11 +10,17 @@
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand{ href: '#' }
-        = image_tag('/assets/logo.png', height: '100%', style: 'display:inline;')
+        = image_tag('/assets/logo.png',
+                    height: '100%',
+                    style: 'display:inline;')
         IssueReport
     / Collect the nav links, forms, and other content for toggling
     .collapse.navbar-collapse#navbar-collapse-1
       %ul.nav.navbar-nav
+        %li.active
+          %a{ href: projects_path }
+            Projects
+            %span.sr-only (current)
         %li.active
           %a{ href: issues_path }
             Issues

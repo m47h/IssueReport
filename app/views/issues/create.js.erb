@@ -1,4 +1,4 @@
-$('#issueModal').modal('hide');
+$('#Modal').modal('hide');
 <% if action_name == 'create' %>
   $('#issues').append('<%= escape_javascript(render "issue", issue: @issue) %>');
 <% elsif action_name == 'update' %>
