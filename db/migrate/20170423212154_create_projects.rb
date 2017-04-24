@@ -8,5 +8,6 @@ class CreateProjects < ActiveRecord::Migration[5.0]
     add_index :projects, :name
     add_index :projects, :user_id
     add_index :projects, [:name, :user_id]
+    Project.create!(name: "First", user: User.first)
   end
 end
