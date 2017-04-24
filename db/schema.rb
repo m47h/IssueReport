@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170424112444) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "user_id",            default: 1, null: false
-    t.integer  "project_id",         default: 0, null: false
+    t.integer  "project_id",         default: 1, null: false
     t.index ["project_id", "user_id"], name: "index_issues_on_project_id_and_user_id", using: :btree
     t.index ["project_id"], name: "index_issues_on_project_id", using: :btree
     t.index ["user_id"], name: "index_issues_on_user_id", using: :btree

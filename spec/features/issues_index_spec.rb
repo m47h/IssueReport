@@ -2,10 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'Issue', type: :feature do
   let!(:user) { FactoryGirl.create(:user, password: '12345678') }
-  let!(:issue) { FactoryGirl.create(:issue, user: user) }
-  let!(:issue2) { FactoryGirl.create(:issue, name: 'Name2', user: user) }
+  let!(:project) { FactoryGirl.create(:project, user: user) }
+  let!(:issue) { FactoryGirl.create(:issue, user: user, project: project) }
+  let!(:issue2) { FactoryGirl.create(:issue, name: 'Name2', user: user, project: project) }
   before(:each) do
     login_as user
+    visit project_path(project.id)
   end
 
   scenario 'Signs me in' do
@@ -19,17 +21,16 @@ RSpec.feature 'Issue', type: :feature do
     end
     expect(page).to have_content 'Signed in successfully.'
     expect(page).to have_content user.email
+    expect(page).to have_content 'Projects'
   end
 
   scenario '#index : User logs in and display issues list' do
-    visit issues_path
     click_link 'Issues'
     expect(page).to have_content issue.name
     expect(page).to have_content 'Name2'
   end
 
   scenario '#index : Search issue' do
-    visit issues_path
     within('form.navbar-form') do
       fill_in 'Search', with: issue.name
       click_button 'Search'
@@ -39,7 +40,6 @@ RSpec.feature 'Issue', type: :feature do
   end
 
   scenario '#create : remote CORRECT creating Issue', js: true do
-    visit issues_path
     click_link 'New Issue'
     expect(page).to have_content 'Body'
     within('form#new_issue') do
@@ -53,7 +53,6 @@ RSpec.feature 'Issue', type: :feature do
   end
 
   scenario '#create : remote creating Issue with blank NAME', js: true do
-    visit issues_path
     click_link 'New Issue'
     expect(page).to have_content 'Body'
     within('form#new_issue') do
@@ -64,7 +63,6 @@ RSpec.feature 'Issue', type: :feature do
   end
 
   scenario '#update : remote CORRECT editing Issue', js: true do
-    visit issues_path
     within('#issue_' + issue.id.to_s) do
       click_link 'Edit'
     end
@@ -78,5 +76,13 @@ RSpec.feature 'Issue', type: :feature do
       click_button 'Issue'
     end
     expect(page).to have_content 'Correct Name'
+  end
+
+  scenario '#destroy : remove issue from list' do
+    within('#issue_' + issue.id.to_s) do
+      click_link 'Destroy'
+    end
+    driver.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertOpenError
+    expect(page).not_to have_content issue.name
   end
 end

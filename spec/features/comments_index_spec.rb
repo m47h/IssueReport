@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.feature 'Comment', type: :feature do
   let!(:user) { FactoryGirl.create(:user, password: '12345678') }
-  let!(:issue) { FactoryGirl.create(:issue, user: user) }
+  let!(:project) { FactoryGirl.create(:project, user: user) }
+  let!(:issue) { FactoryGirl.create(:issue, user: user, project: project) }
   let!(:comment) { FactoryGirl.create(:comment, user: user, issue: issue) }
   before(:each) do
     login_as user
-    visit issues_path
-    page.first('img.media-obiect').click
+    visit issue_path(issue)
   end
 
   scenario '#index : display comments for Issue', js: true do

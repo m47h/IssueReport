@@ -69,7 +69,7 @@ class IssuesController < ApplicationController
     @issue.destroy
     flash[:danger] = 'Issue was successfully destroyed.'
     respond_to do |format|
-      format.html { redirect_to issues_url }
+      format.html { redirect_to [@issue.project] }
       format.json { head :no_content }
     end
   end
