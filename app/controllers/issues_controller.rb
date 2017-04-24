@@ -5,11 +5,17 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = if params[:search].blank?
-                @project.issues.all
+    @issues = @project.issues.all
+  end
+
+  def search
+    @issues = if params[:project_id]
+                Issue.where(project_id: params[:project_id]).
+                  where('"issues"."name" like ?', "%#{params[:search]}%")
               else
-                @project.issues.where('"issues"."name" like ?', "%#{params[:search]}%")
+                Issue.where('"issues"."name" like ?', "%#{params[:search]}%")
               end
+    render :index
   end
 
   # GET /issues/1

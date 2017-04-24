@@ -18,7 +18,7 @@
     .collapse.navbar-collapse#navbar-collapse-1
       %ul.nav.navbar-nav
         = navbar_links
-      = bootstrap_form_tag(url: [@project, :issues],
+      = bootstrap_form_tag(url: [:search, @project, :issues],
                            layout: :inline,
                            html: { role: 'search',
                                    class: 'navbar-form navbar-left',
