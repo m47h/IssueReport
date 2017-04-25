@@ -1,10 +1,11 @@
 %h3
   Listing issues
-  = link_to 'New Issue', new_project_issue_path(@project),
-            type: 'button',
-            class: 'btn btn-xs btn-default',
-            data: { toggle: 'modal',
-                    target: '#Modal',
-                    remote: true }
+  - if @project
+    = link_to 'New Issue', new_project_issue_path(@project),
+              type: 'button',
+              class: 'btn btn-xs btn-default',
+              data: { toggle: 'modal',
+                      target: '#Modal',
+                      remote: true }
 - @issues.each do |issue|
   = render 'issue', issue: issue

@@ -9,7 +9,7 @@ class Issue < ApplicationRecord # :nodoc:
                     default_url: '/system/:class/:attachment/64x64.png'
 
   validates :name, :body, presence: true
-  validates :name, uniqueness: true
+  validates :name, uniqueness: { scope: :project_id, case_sensitive: false }
   validates_attachment :image,
                        content_type: { content_type: ['image/jpeg', 'image/gif', 'image/png'] },
                        size: { in: 0..1.megabytes }
