@@ -78,11 +78,12 @@ RSpec.feature 'Issue', type: :feature do
     expect(page).to have_content 'Correct Name'
   end
 
-  scenario '#destroy : remove issue from list' do
-    within('#issue_' + issue.id.to_s) do
-      click_link 'Destroy'
+  scenario '#destroy : remove issue from list', js: true do
+    accept_confirm do
+      within('#issue_' + issue.id.to_s) do
+        click_link 'Destroy'
+      end
     end
-    driver.switch_to.alert.accept rescue Selenium::WebDriver::Error::NoAlertOpenError
     expect(page).not_to have_content issue.name
   end
 end
