@@ -5,6 +5,7 @@ RSpec.feature 'Issue', type: :feature do
   let!(:project) { FactoryGirl.create(:project, user: user) }
   let!(:issue) { FactoryGirl.create(:issue, user: user, project: project) }
   let!(:issue2) { FactoryGirl.create(:issue, name: 'Name2', user: user, project: project) }
+  let!(:issue3) { FactoryGirl.create(:issue, name: 'Name3', user: user, project: project) }
   before(:each) do
     login_as user
     visit project_path(project.id)
@@ -30,13 +31,14 @@ RSpec.feature 'Issue', type: :feature do
     expect(page).to have_content 'Name2'
   end
 
-  scenario '#index : Search issue' do
+  scenario '#search : Search issue' do
     within('form.navbar-form') do
-      fill_in 'Search', with: issue.name
+      fill_in 'Search', with: "name"
       click_button 'Search'
     end
-    expect(page).to have_content issue.name
-    expect(page).not_to have_content 'Name2'
+    expect(page).not_to have_content issue.name
+    expect(page).to have_content 'Name2'
+    expect(page).to have_content 'Name3'
   end
 
   scenario '#create : remote CORRECT creating Issue', js: true do

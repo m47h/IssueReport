@@ -9,12 +9,7 @@ class IssuesController < ApplicationController
   end
 
   def search
-    @issues = if params[:project_id]
-                Issue.where(project_id: params[:project_id]).
-                  where('"issues"."name" like ?', "%#{params[:search]}%")
-              else
-                Issue.where('"issues"."name" like ?', "%#{params[:search]}%")
-              end
+    @issues = Issue.navbar_search(params[:project_id], params[:search])
     render :index
   end
 
