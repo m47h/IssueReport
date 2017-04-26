@@ -23,6 +23,7 @@ class IssuesController < ApplicationController
   # GET /issues/new
   def new
     @issue = Issue.new
+    authorize @issue
   end
 
   # GET /issues/1/edit
@@ -31,34 +32,25 @@ class IssuesController < ApplicationController
   end
 
   # POST /issues
-  # POST /issues.json
   def create
-    @issue = Issue.new(issue_params) do |i|
-      i.user = current_user
-      i.project = @project
-    end
+    authorize complete, :create?
     respond_to do |format|
       if @issue.save
         flash[:success] = 'Issue was successfully created.'
-        format.json { render :show, status: :created, location: @issue }
         format.js   { render :create }
       else
-        format.json { render json: @issue.errors, status: :unprocessable_entity }
         format.js   { render :new }
       end
     end
   end
 
   # PATCH/PUT /issues/1
-  # PATCH/PUT /issues/1.json
   def update
     respond_to do |format|
       if @issue.update(issue_params)
         flash[:success] = 'Issue was successfully updated.'
-        format.json { render :show, status: :ok, location: @issue }
         format.js   { render :create }
       else
-        format.json { render json: @issue.errors, status: :unprocessable_entity }
         format.js   { render :new }
       end
     end
@@ -85,6 +77,14 @@ class IssuesController < ApplicationController
   def set_issue
     @issue = Issue.find(params[:id])
     @project = @issue.project
+    authorize @project
+  end
+
+  def complete
+    @issue = Issue.new(issue_params) do |i|
+      i.user = current_user
+      i.project = @project
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

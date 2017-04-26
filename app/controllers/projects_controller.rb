@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = policy_scope(Project)
   end
 
   # GET /projects/1
@@ -16,6 +16,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    authorize @project
   end
 
   # GET /projects/1/edit
@@ -24,33 +25,26 @@ class ProjectsController < ApplicationController
   end
 
   # POST /projects
-  # POST /projects.json
   def create
-    @project = Project.new(project_params) { |p| p.user = current_user }
-
+    authorize complete, :create?
     respond_to do |format|
       if @project.save
         flash[:success] = 'Project was successfully created.'
         format.js { render :create }
-        format.json { render :show, status: :created, location: @project }
       else
         format.js { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
 
   # PATCH/PUT /projects/1
-  # PATCH/PUT /projects/1.json
   def update
     respond_to do |format|
       if @project.update(project_params)
         flash[:success] = 'Project was successfully updated.'
         format.js { render :create }
-        format.json { render :show, status: :ok, location: @project }
       else
         format.js { render :new }
-        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -69,6 +63,11 @@ class ProjectsController < ApplicationController
 
   def set_project
     @project = Project.find(params[:id])
+    authorize @project
+  end
+
+  def complete
+    @project = Project.new(project_params) { |p| p.user = current_user }
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

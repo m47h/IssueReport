@@ -27,6 +27,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'paperclip', '~> 5.0.0'
+gem 'pundit'
 gem 'remotipart'
 gem 'sprockets-rails'
 
