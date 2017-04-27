@@ -1,7 +1,9 @@
 .media.col-md-12{ id: "project_#{project.id}" }
   .media-left
-    = link_to image_tag('/system/issues/images/64x64.png',
-                        class: 'media-obiect', alt: `...`), project
+    = link_to image_tag('/assets/logo.png',
+                        class: 'media-obiect',
+                        width: '64px'),
+                        project
   .media-body
     %h4.media-heading
       = project.name
