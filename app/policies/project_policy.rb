@@ -1,7 +1,11 @@
 class ProjectPolicy < ApplicationPolicy # :nodoc:
   class Scope < Scope # :nodoc:
     def resolve
-      scope.where(user_id: user.id)
+      if user.admin?
+        scope.all
+      else
+        scope.where(user_id: user.id)
+      end
     end
   end
 
@@ -14,6 +18,6 @@ class ProjectPolicy < ApplicationPolicy # :nodoc:
   end
 
   def edit?
-    user.owner_of?(record)
+    user.owner_of?(record) || user.admin?
   end
 end
