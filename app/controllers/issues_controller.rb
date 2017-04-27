@@ -5,11 +5,12 @@ class IssuesController < ApplicationController
   # GET /issues
   # GET /issues.json
   def index
-    @issues = @project.issues.all
+    @issues = @project.issues
+    policy_scope(Issue)
   end
 
   def search
-    @issues = Issue.navbar_search(params[:project_id], params[:search])
+    @issues = policy_scope(Issue).navbar_search(params[:project_id], params[:search])
     render :index
   end
 

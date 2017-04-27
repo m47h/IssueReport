@@ -1,7 +1,7 @@
 class ProjectPolicy < ApplicationPolicy # :nodoc:
   class Scope < Scope # :nodoc:
     def resolve
-      user.projects
+      scope.where(user_id: user.id)
     end
   end
 
